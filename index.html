@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steen papier schaar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <span>Steen papier schaar</span>
+    </div>
+    <div class="information-wrapper">
+        <span>Computer: <span id="computer"></span></span>
+        <span>Jouw keuze: <span id="human"></span></span>
+        <span>Uitkomst: <span id="result"></span></span>
+    </div>
+    <div class="btn-wrapper">
+        <button id="steen">Steen</button>
+        <button id="papier">Papier</button>
+        <button id="schaar">Schaar</button>
+    </div>
+
+    <script>
+        let spelerKeuze, computerKeuze;
+
+        function computerMaaktKeuze() {
+            const keuzes = ['steen', 'papier', 'schaar'];
+            const randomIndex = Math.floor(Math.random() * 3);
+            computerKeuze = keuzes[randomIndex];
+            document.querySelector("#computer").innerHTML = computerKeuze;
+        }
+
+        function bepaalWinnaar() {
+            if (spelerKeuze === computerKeuze) {
+                document.querySelector("#result").innerHTML = "Het is gelijkspel!";
+            } else if (
+                (spelerKeuze === 'steen' && computerKeuze === 'schaar') ||
+                (spelerKeuze === 'papier' && computerKeuze === 'steen') ||
+                (spelerKeuze === 'schaar' && computerKeuze === 'papier')
+            ) {
+                document.querySelector("#result").innerHTML = "Je hebt gewonnen!";
+            } else {
+                document.querySelector("#result").innerHTML = "Je hebt verloren!";
+            }
+        }
+
+        document.querySelector("#steen").addEventListener('click', function () {
+            spelerKeuze = 'steen';
+            document.querySelector("#human").innerHTML = spelerKeuze;
+            computerMaaktKeuze();
+            bepaalWinnaar();
+        });
+
+        document.querySelector("#papier").addEventListener('click', function () {
+            spelerKeuze = 'papier';
+            document.querySelector("#human").innerHTML = spelerKeuze;
+            computerMaaktKeuze();
+            bepaalWinnaar();
+        });
+
+        document.querySelector("#schaar").addEventListener('click', function () {
+            spelerKeuze = 'schaar';
+            document.querySelector("#human").innerHTML = spelerKeuze;
+            computerMaaktKeuze();
+            bepaalWinnaar();
+        });
+
+    </script>
+</body>
+
+</html>
